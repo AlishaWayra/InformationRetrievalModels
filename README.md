@@ -38,7 +38,5 @@ index is created to retrieve passages efficiently in file *2_invertedindex.py*. 
 implemented and applied to the dataset in file *3_tfidf_bm25.py*. Lastly, the query likelihood language models are executed in 
 *4_querylikelihoodl_lm.py*.
 
-For each model applied to the passages and queries, a *.csv* file is created with the sorted passages depending on their score.
-
 ## How to run my code
 
