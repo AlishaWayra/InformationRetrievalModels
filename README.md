@@ -28,6 +28,8 @@ The following models are implemented:
   - Lidstone correction
   - Dirichlet smoothing
 
+Out of up to 1'000 passages, the models retrieve at most 100 passages for each query. At the end, a *.csv* file is created for each model with each query and the top 100 passages in ascending order depending on their score.
+
 ## Structure of Repository
 First, text data is preprocessed, vocabulary of terms gets idenfitified, and some basic analysis is run to evaluate the frequency
 of unique term accross all passages. The distribution of term frequencies is also compared to the Zipfian distribution, since it is
