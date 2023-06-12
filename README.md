@@ -5,7 +5,7 @@ In this project, I focused on **implementing selected information retrieval and 
 Most models are already available as functions in python packages, but the aim was to deepen my understanding in this field by 
 building simplified version from scratch and **applying them to a query-passage text dataset**. Overall, the models retrieve a specified
 amount of passages for a given search query which are relevant to the query's content, and sort passages in descending order based on the score 
-that models assignes to each passage. 
+that models assign to each passage. 
 
 ## Dataset
 There are three datasets used to apply the models. The first dataset *candidate-passages-top1000.tsv* contains **200 unique search queries** and for each query up 
