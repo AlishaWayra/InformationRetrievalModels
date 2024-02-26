@@ -17,7 +17,7 @@ if they are suitable for more than one query. The dataset contains **4 features*
 - **passage**: the passage text
 
 The dataset *passage-collection.txt* only contains the passage text in a text file, whereas *test-queries.tsv* only contains the unique
-queries, again with a **qid** and **query** column as in the first dataset. 
+queries, again with a **qid** and **query** column as in the first dataset. All data was provided by the UCL course "Information Retrieval and Data Mining" (COMP0084).
 
 ## Models
 The following models are implemented:
