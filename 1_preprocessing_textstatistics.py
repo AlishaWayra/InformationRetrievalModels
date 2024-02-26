@@ -258,6 +258,7 @@ if( __name__ == "__main__" ):
     passages_tks_wsw = remove_stopw(passages_tks)
     tks_count_wsw = absolute_freq(passages_tks_wsw)
     del tks_count_wsw['’'], tks_count_wsw['”'], tks_count_wsw['“']      # deleting remaining punctuation 
+    np.save('vocab_freq.npy', tks_count_wsw)                            # save absolute term frequency in directory as .npy 
 
     tks_freq_wsw, ranks_wsw = normalized_freq(tks_count_wsw)
     zipf_freq_wsw = np.array(zipf_distr(ranks_wsw))
