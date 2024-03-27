@@ -6,7 +6,7 @@ from nltk.tokenize import word_tokenize
 import string
 from nltk.stem import PorterStemmer
 
-#%% 1. preprocess text data
+#%% 1. text processing helper function 
 
 def preprocessing(text): 
     
@@ -28,7 +28,7 @@ def preprocessing(text):
     
     return tokens_stemmed
 
-#%% 2. create inverted index from imported data
+#%% 2. inverted index helper function
 
 def create_inv_idx(data, vocab): 
     """ 
@@ -59,7 +59,7 @@ def create_inv_idx(data, vocab):
     
     return inv_idx
 
-#%% run script
+#%% 3. creating inverted index
 
 if( __name__ == "__main__" ):
     # import query-passage data and voabulary list
@@ -68,7 +68,9 @@ if( __name__ == "__main__" ):
     vocab = list( np.load(VOCAB, allow_pickle='TRUE').item().keys() )
     data = pd.read_csv(FILE, sep='\t', header=None, names=['qid', 'pid', 'query', 'passage'])
     data = data.drop_duplicates(subset=['pid'])         # keep only unique passages (pid as identifier)
-    
+    print('number of distinct passages:', data.shape[0])
+    print('number of distinct queries:', len(data['qid'].unique()))
+
     # create inverted index
     inv_idx = create_inv_idx(data, vocab)
     np.save('inv_idx.npy', inv_idx)

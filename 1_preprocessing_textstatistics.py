@@ -15,25 +15,24 @@ import seaborn as sns
 sns.set()
 
 nltk.download('wordnet')
-nltk.download('stopwords') # importing english stop words
+nltk.download('stopwords')                                              # importing english stop words
 
-#%% 1. Read passage data 
+#%% 1. Read passage data helper function
 
-# open text file in read mode
 def import_textdata(FILE):
-    
+    """ open text file in read mode """
     with open(FILE) as file: 
         # read all characters of the file into one string
         passages = file.read() 
         
     return passages
     
-#%% 2. Preprocessing 
+#%% 2. Text preprocessing helper function 
 
-### a function preprocessing text data
 def preprocessing(text): 
     """
-
+    preprocessing text data
+    
     Parameters
     ----------
     text : STRING
@@ -64,12 +63,12 @@ def preprocessing(text):
     
     return tokens_stemmed
         
-#%% 3. Vocabulary size & normalized term frequency
+#%% 3. Vocabulary size & normalized term frequency helper function
 
-### counting number of times each term occurs in text
 def absolute_freq(processed_tks): 
     """
-
+    counting number of times each term occurs in text
+    
     Parameters
     ----------
     processed_tks : LIST
@@ -85,11 +84,11 @@ def absolute_freq(processed_tks):
     occurences = FreqDist(processed_tks)
     
     return occurences
-
-### normalized term frequency
+ 
 def normalized_freq(tks_count): 
     """
-
+    computing normalized term frequency
+    
     Parameters
     ----------
     term_count : FREQDIST
@@ -119,7 +118,7 @@ def normalized_freq(tks_count):
     return freq_norm, ranks
 
 
-#%% 4. Plotting normalized frequency against rank
+#%% 4. Plotting normalized frequency against rank helper function
 
 # set style and fontstyle for plots
 sns.set_style('whitegrid')
@@ -138,13 +137,12 @@ def plot_norm_freq():
 
     return None
 
-#%% 5. Comparing normalized frequency with Zipfs law distribution
+#%% 5. normalized term frequency vs. Zipfs distribution helper functions
 
-### function calculating zipfian distribution of terms
 def zipf_distr(ranks, s=1):
-    
     """
-
+    calculating zipfian distribution of terms
+    
     Parameters
     ----------
     ranks : ARRAY
@@ -167,9 +165,8 @@ def zipf_distr(ranks, s=1):
     
     return zipf_freq
 
-### ploting normalized term distribution against zipfian distribution 
 def plot_norm_zipf():
-    
+    """ ploting normalized term distribution against zipfian distribution """
     fig = plt.figure()
     sns.lineplot( x=np.log(ranks), y=np.log(tks_freq), color='darkblue')
     sns.lineplot( x=np.log(ranks), y=np.log(zipf_freq), color='red', linestyle='dashed')
@@ -180,10 +177,9 @@ def plot_norm_zipf():
     sns.despine()
     
     return None
-
-### quantifying difference between normalized and zipfian term frequency with with MSE
+ 
 def calc_MSE(term_freq, zipf_freq, ranks):
-    
+    """ Mean squared error between normalized and zipfian term frequency """
     term_freq_sorted = abs(np.sort(-term_freq))
     zipf_freq_sorted = abs(np.sort(-zipf_freq))
     squared_error = (term_freq_sorted - zipf_freq_sorted)**2
@@ -192,11 +188,10 @@ def calc_MSE(term_freq, zipf_freq, ranks):
     
     return MSE
 
-#%% 6. Removing stop words and comparing to Zipfian distribution
+#%% 6. normalized term frequency vs. Zipfs distribution after removing stopword helper functions
 
-### function that preprocesses stop words and then removes them from a list of words
 def remove_stopw(word_list):
-    
+    """ preprocesses stop words and then removes them from a list of words """
     # initialize stemmer
     stemmer= PorterStemmer()
     
@@ -217,9 +212,8 @@ def remove_stopw(word_list):
 
     return clean
 
-### plotting empirical distribution after stopwords removal against zipf distribution 
 def plot_norm_zipf_without_stpwrds():
-    
+    """ plotting normalized distribution after stopwords removal against zipf distribution  """
     fig = plt.figure()
     sns.lineplot( x=np.log(ranks_wsw), y=np.log(tks_freq_wsw), color='darkblue')
     sns.lineplot( x=np.log(ranks_wsw), y=np.log(zipf_freq_wsw), color='red', linestyle='dashed')
@@ -232,10 +226,9 @@ def plot_norm_zipf_without_stpwrds():
     
     return None
 
-#%% run whole script
+#%% 7. text statistics output
 
 if( __name__ == "__main__" ):
-    
     # import text data
     FILE = 'passage-collection.txt'                                     # file name 
     passages = import_textdata(FILE)
@@ -249,7 +242,7 @@ if( __name__ == "__main__" ):
     tks_freq, ranks = normalized_freq(tks_count)
     plot_norm_freq()
     
-    ### generate zipfian distribution ###
+    ### generating zipfian distribution ###
     zipf_freq = np.array(zipf_distr(ranks))
     plot_norm_zipf()
     print('    MSE between normalized term frequency/distribution and zipfian distribution:', calc_MSE(tks_freq, zipf_freq, ranks))
