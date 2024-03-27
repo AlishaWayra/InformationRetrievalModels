@@ -31,7 +31,8 @@ The following models are implemented:
 Out of up to 1'000 passages, the models retrieve at most 100 passages for each query. At the end, a *.csv* file is created for each model containing each query and the top 100 passages in ascending order depending on their score. For those interested, here are some details about the different models:
 
 ### Vector space model with TF-IDF representation and cosine similarity
-
+The main goal of the retrieval models is to evaluate how relevant a passage is for a given search query. A vector space model achieves this by assessing how similar two vectors are in a n-dimensional space, in this case how similar a passage is to a query. Hence, query and passage first need to be represented as vectors capturing the charactaristics of their content. The TF-IDF method is used to represent text as vectors by computing the **term frequency** (TF) of each word occuring in a text and the **inverted document frequency** (IDF) by using
+              $ w_i = tf * idf $
 
 ## Structure of Repository
 First, text data is preprocessed, vocabulary of terms gets idenfitified, and some basic analysis is run to evaluate the frequency
