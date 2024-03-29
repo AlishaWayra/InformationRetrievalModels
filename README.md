@@ -57,7 +57,7 @@ These models evaluate the relevancy of a passage to a query by estimating the pr
 
 $$p(Q|M_P) = \prod_{i=1}^z p(q_i|M_P).$$
 
-Since $q_i$'s are sampled from $M_P$ $p(q_i|M_P), missing words would have probability 0 and lead to $p(Q|M_P) =0$, and the model distinguish between a query with one missing word, and a query with several/all missing words. Hence, smoothing techniques can be applied to prevent zero probability, but lower the probability for missing word.
+Since $q_i$'s are sampled from $M_P$, missing words would have probability 0 and lead to $p(Q|M_P) =0$, and the model couldn't distinguish between a query with one missing word, and a query with several/all missing words. Hence, smoothing techniques can be applied to prevent zero probability, but lower the probability for missing word.
 
 ## Structure of Repository
 First, text data is preprocessed, vocabulary of terms gets idenfitified, and some basic analysis is run to evaluate the frequency
