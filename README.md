@@ -68,7 +68,8 @@ $$p(q_i|M_P) = \frac{f_i +\epsilon}{m + d\cdot \epsilon }.$$
 This way, all useen words are treated equally and have same probability. Some words however are more frequent than others. **Dirichlet smoothing** includes the background probability $p(q_i|M_C)$, which is the probability of $q_i$ comming from the collection of all passages language model. 
 
 $$p(q_i|M_P) = \lambda \frac{f_i}{m} + (1-\lambda) \frac{c_i}{d}.$$
-$$ \lambda = \frac{m}{m + \mu}$$
+
+$$\lambda = \frac{m}{m + \mu}.$$
 
 $c_i$ denotes the term occurence of $q_i$ in the whole passage collection and $\mu$ is a constant.
 
