@@ -8,7 +8,7 @@ amount of passages for a given search query which are relevant to the query's co
 that models assign to each passage. 
 
 ## Dataset
-There are three datasets used to apply the models. The first dataset *candidate-passages-top1000.tsv* contains **200 unique search queries** and for each query up 
+There are [three datasets](https://drive.google.com/drive/folders/1fKmscLL_mO3ZhaHRtvJvEmChlYoHAGC8?usp=share_link) used to apply the models. The first dataset *candidate-passages-top1000.tsv* contains **200 unique search queries** and for each query up 
 to **1'000 pre-selected suitable passages**. The passages are not unique to the query and can occur several times throughout the dataset 
 if they are suitable for more than one query. The dataset contains **4 features**:
 - **qid**: idenfication number of a query
